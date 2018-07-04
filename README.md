@@ -38,8 +38,10 @@ Then I use `qemu-system-x86_64 -kernel arch/x86/boot/bzImage -hda disk.img -appe
 
 I had grub bootloader installed, so kernel can boot directly
 
+![start_kernel](kernel_start.png)
 After start_kernel called:
 - set_task_stack_end_magic() -- kernel/fork.c
+![set_task_stack_end_magick](set_task_stack_end_magick.png)
 ```c
 void set_task_stack_end_magic(struct task_struct *tsk)
 {
@@ -51,6 +53,7 @@ void set_task_stack_end_magic(struct task_struct *tsk)
 ```
 - cgroup_init_early() --kernel/cgroup/cgroup.c
     - cgroup initialization at system boot, and initialize any subsystems that request early init
+![cgroup_init_early](cgroup_init_early.png)
 ```c
 int __init cgroup_init_early(void)
 {
@@ -89,6 +92,7 @@ int __init cgroup_init_early(void)
 ---
 - boot_cpu_init() -- kernel/cpu.c
     - Activate the first processor
+![boot_cpu_init](boot_cpu_init.png)
 ```c
 void __init boot_cpu_init(void)
 {
@@ -107,6 +111,7 @@ void __init boot_cpu_init(void)
 ```
 - setup_arch() -- arch/x86/kernel/setup.c
     - architecture-specific boot-time initializations
+![setup_arch](setup_arch.png)
 ```c
 void __init setup_arch(char **cmdline_p)
 {
